@@ -1,0 +1,2 @@
+# mantiksal_devre_Tasarimi
+mantiksal_devre_Tasarimi yazılım ödevi
