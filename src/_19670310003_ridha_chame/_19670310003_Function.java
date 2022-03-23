@@ -6,8 +6,8 @@ public class _19670310003_Function {
 
     ArrayList<String> std_max = new ArrayList<String>();
     ArrayList<String> std_min = new ArrayList<String>();
-    ArrayList<String> min = new ArrayList<String>();
-    ArrayList<String> max = new ArrayList<String>();
+    ArrayList<Integer> min = new ArrayList<Integer>();
+    ArrayList<Integer> max = new ArrayList<Integer>();
     ArrayList<String> top_min = new ArrayList<String>();
     ArrayList<String> car_max = new ArrayList<String>();
     String symbol;

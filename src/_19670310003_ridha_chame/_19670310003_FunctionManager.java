@@ -2,6 +2,7 @@ package _19670310003_ridha_chame;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class _19670310003_FunctionManager {
@@ -30,7 +31,7 @@ public class _19670310003_FunctionManager {
                 int decimalValueOfTerms = Integer.parseInt(binaryValueOfTerms.replace(" ", ""), 2);
                 String alphFormOfTerms = "";
                 if (String.valueOf(line.charAt(bol)).equals("1")) {
-                    function.min.add(String.valueOf(decimalValueOfTerms));
+                    function.min.add(decimalValueOfTerms);
                     function.top_min.add("m" + decimalValueOfTerms);
                     for (int i = 0; i < this.getVariablesNames().substring(0, this.getVariablesNames().indexOf("|")).length(); i++) {
                         if (String.valueOf(line.charAt(i)).equals("0")) {
@@ -41,7 +42,7 @@ public class _19670310003_FunctionManager {
                     }
                     function.std_min.add(alphFormOfTerms);
                 } else if (String.valueOf(line.charAt(bol)).equals("0")) {
-                    function.max.add(String.valueOf(decimalValueOfTerms));
+                    function.max.add(decimalValueOfTerms);
                     function.car_max.add("M" + decimalValueOfTerms);
                     for (int i = 0; i < this.getVariablesNames().substring(0, this.getVariablesNames().indexOf("|")).length(); i++) {
                         if (line.charAt(i) == '0') {
@@ -69,7 +70,7 @@ public class _19670310003_FunctionManager {
 
     public void WriteFormula(String fuctionSymbol) {
         int bol = this.getVariablesNames().indexOf(fuctionSymbol);
-        for (String m : function.min) {
+        for (int m : function.min) {
             if (function.min.indexOf(m) == 0) {
                 System.out.print(this.getVariablesNames().charAt(bol) + " = Σ(");
             }
@@ -95,7 +96,7 @@ public class _19670310003_FunctionManager {
             }
         }
         System.out.println("");
-        for (String m : function.max) {
+        for (int m : function.max) {
             if (function.max.indexOf(m) == 0) {
                 System.out.print(this.getVariablesNames().charAt(bol) + "=∏(");
             }
@@ -146,21 +147,17 @@ public class _19670310003_FunctionManager {
         return variablesAndFunctions;
     }
 
-    public String getValueOfFunction(String userEntry) {
-        String line = "";
-        try {
-            Scanner reader = new Scanner(dataFile);
-            String variablesValue = "";
-            while (reader.hasNext()) {
-                variablesValue = reader.nextLine();
-                if (variablesValue.substring(0, variablesValue.indexOf("|")).replace(" ", "").equals(userEntry)) {
-                    line = variablesValue.substring(this.getVariablesNames().indexOf(function.symbol), this.getVariablesNames().indexOf(function.symbol) + 1);
-                }
-
+    public int getValueOfFunction(String userEntry) {
+        int line = 0;
+        for (int minterim : this.function.min) {
+            if (Integer.parseInt(userEntry.replace(" ", ""), 2) == minterim) {
+                line = 1;
+                break;
             }
-        } catch (FileNotFoundException ex) {
-            System.out.println("error :" + ex.getMessage());
+
         }
         return line;
+
     }
+
 }
